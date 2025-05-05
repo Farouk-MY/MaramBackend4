@@ -1,0 +1,238 @@
+1. Admin
+
+-Création d'un administrateur
+Route: POST /admins
+{
+  "nom": "NomAdmin",
+  "prenom": "PrénomAdmin",
+  "email": "admin@example.com",
+  "telephone": "12345678",
+  "ville": "Tunis",
+  "codePostal": "1000",
+  "gouvernorat": "Tunis",
+  "motDePasse": "motdepasse123"
+}
+
+-Bloquer un utilisateur
+Route: PUT /users/:id/block
+
+-Débloquer un utilisateur
+Route: PUT /users/:id/unblock
+
+-Export des utilisateurs
+Route: GET /export-users/:format (où :format est csv ou pdf)
+
+2. Auth
+
+-Demande de réinitialisation de mot de passe
+Route: POST /api/auth/reset-password
+{
+  "email": "utilisateur@example.com"
+}
+
+-Vérification du token et réinitialisation
+Route: POST /api/auth/verify-reset-token
+{
+  "token": "abc123def456",
+  "newPassword": "nouveauMotDePasse123"
+}
+
+3. Avis
+
+-Création d'un avis
+Route: POST /api/avis
+{
+  "note": 4,
+  "commentaire": "Très bon produit, je recommande !",
+  "utilisateur_id": 123,
+  "produit_id": 456
+}
+
+-Récupération de tous les avis
+Route: GET /api/avis
+
+-Récupération d'un avis par ID
+Route: GET /api/avis/:id
+
+-Mise à jour d'un avis
+Route: PUT /api/avis/:id
+{
+  "note": 4,
+  "commentaire": "Finalement très satisfait après utilisation prolongée"
+}
+
+- Suppression d'un avis
+Route: DELETE /api/avis/:id
+
+-Statistiques des avis
+Route: GET /api/avis/stats
+
+-Avis d'un produit spécifique
+Route: GET /api/avis/produit/:produit_id
+
+4.Création d'un client
+
+- Création d'un client
+Route: POST /api/clients
+{
+  "nom": "Dupont",
+  "prenom": "Jean",
+  "email": "jean.dupont@example.com",
+  "telephone": "12345678",
+  "ville": "Tunis",
+  "codePostal": "1000",
+  "gouvernorat": "Tunis",
+  "motDePasse": "motdepasse123"
+}
+
+5. commande
+
+-Validation du panier et création de commande
+Route: POST /api/commande/validate-panier
+{
+  "panier_id": 123,
+  "utiliserPoints": true
+}
+
+6.messagerie
+
+-Envoyer un message à l'admin
+Route: POST /api/messagerie/send-message
+{
+  "utilisateur_id": 123,
+  "contenu": "Bonjour, j'ai un problème avec ma commande"
+}
+
+- Répondre à un message client
+Route: POST /api/messagerie/reply-message
+{
+  "message_id": 456,
+  "admin_id": 789,
+  "contenu": "Nous traitons votre problème"
+}
+
+- Obtenir les messages d'un client
+Route: GET /api/messagerie/client-messages/123
+
+- Obtenir tous les messages (pour admin)
+Route: GET /api/messagerie/all-messages
+
+- Exporter les messages en CSV
+Route: GET /api/messagerie/export-csv
+
+- Exporter les messages en PDF
+Route: GET /api/messagerie/export-pdf
+
+-Obtenir les réponses des admins
+Route: GET /api/messagerie/admin-replies
+
+
+7. notification
+
+-Envoyer une notification à tous les clients
+Route: POST /api/notifications/send-to-all-clients
+{
+  "message": "Nouvelle promotion disponible !"
+}
+
+-Marquer une notification comme lue
+Route: PUT /api/notifications/:notificationId/mark-as-read
+
+-Obtenir les clients ayant lu une notification
+Route: GET /api/notifications/read?message=Nouvelle%20promotion%20disponible%20!
+
+-Obtenir les clients n'ayant pas lu une notification
+Route: GET /api/notifications/unread?message=Nouvelle%20promotion%20disponible%20!
+
+-Exporter le statut des notifications
+Route: GET /api/notifications/export-notification-status?message=Nouvelle%20promotion%20disponible%20!&format=csv
+
+8. panier
+
+-Création d'un panier
+Route: POST /api/panier
+{
+  "client_id": 123
+}
+
+-Ajout d'un produit au panier
+Route: POST /api/panier/:panier_id/add-product
+{
+  "produit_id": 789,
+  "qteCmd": 2
+}
+
+9.produit
+
+-Création d'un produit
+Route: POST /api/produit
+{
+  "designation": "Smartphone Premium",
+  "description": "Dernier modèle avec caméra haute résolution",
+  "images": ["smartphone.jpg"],
+  "qteStock": 50,
+  "prix": 999.99,
+  "nbrPoint": 100,
+  "seuilMin": 5
+}
+
+-Récupération des produits
+Route: GET /api/produit
+
+-Récupération d'un produit spécifique
+Route: GET /api/produit/1
+
+ -Mise à jour d'un produit
+Route: PUT /api/produit/1
+
+-Suppression d'un produit (soft delete)
+Route: DELETE /api/produit/1
+
+- Recherche de produits
+Route: GET /api/produit/search?designation=smart
+
+-Gestion des stocks
+Route: GET /api/produit/1/stock
+
+Route: PUT /api/produit/admin/produit/1/stock
+{
+  "qteStock": 40
+}
+
+- Produits à faible stock
+Route: GET /api/produit/admin/produits-faibles
+
+- Tableau de bord produit
+Route: GET /api/produit/admin/produit/1
+
+10.User
+
+-Récupérer tous les utilisateurs
+Route: GET /api/users/all
+
+-Vérifier un utilisateur (connexion)
+Route: POST /api/users/check
+{
+  "email": "jean.dupont@example.com",
+  "motDePasse": "monMotDePasse123"
+}
+
+-Rechercher des utilisateurs
+Route: GET /api/users/search?query=Dup
+
+- Récupérer un utilisateur par ID
+Route: GET /api/users/1
+
+-Mettre à jour un utilisateur
+Route: PUT /api/users/1
+{
+  "nom": "Dupont",
+  "prenom": "Jean",
+  "email": "jean.dupont@example.com",
+  "telephone": "12345678",
+  "motDePasse": "nouveauMotDePasse123",
+  "ville": "Paris",
+  "codePostal": "75001",
+  "gouvernorat": "Île-de-France"
+}
+

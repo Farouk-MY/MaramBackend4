@@ -1,0 +1,109 @@
+html, body, #root {
+    height: 100%;
+    margin: 0;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif;
+  }
+  
+  .sidebar {
+    background-color: #4338ca;
+    color: white;
+    transition: all 0.3s;
+    min-height: 100vh;
+    width: 250px;
+    flex-shrink: 0;
+  }
+  
+  .sidebar-collapsed {
+    width: 70px;
+  }
+  
+  .sidebar-collapsed .sidebar-text {
+    display: none;
+  }
+  
+  .sidebar-collapsed .logo-text {
+    display: none;
+  }
+  
+  .content-area {
+    flex: 1;
+    transition: all 0.3s;
+    overflow-y: auto;
+  }
+  
+  .content-expanded {
+    margin-left: 70px;
+  }
+  
+  .nav-item {
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .nav-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .nav-item.active {
+    background-color: rgba(0, 0, 0, 0.2);
+  }
+  
+  .logo-container {
+    height: 60px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .user-profile {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .stats-card {
+    transition: all 0.2s;
+  }
+  
+  .stats-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  }
+  
+  .icon-bg {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .highlight-row {
+    transition: all 0.2s;
+  }
+  
+  .highlight-row:hover {
+    background-color: #f3f4f6;
+    transform: translateX(2px);
+  }
+  
+  .model-card {
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+  
+  .model-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  }
+  
+  .fade-in {
+    animation: fadeIn 0.3s ease-in-out;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  /* Add support for dashed borders for "Add New" cards */
+  .border-dashed {
+    border-style: dashed !important;
+  }
