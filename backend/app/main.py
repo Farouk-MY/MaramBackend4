@@ -6,15 +6,16 @@ from typing import Callable
 
 from .config import settings
 from .db.database import MongoDB
-from .api.routes import auth, admin, model, contact
+from .api.routes import auth, admin, model, contact, document, chatbot
 import os
 
 # Create the templates directory if it doesn't exist
 os.makedirs("app/templates", exist_ok=True)
 
-# Create directories for model uploads
+# Create directories for model uploads and documents
 os.makedirs("uploads/models", exist_ok=True)
 os.makedirs("uploads/temp", exist_ok=True)
+os.makedirs("uploads/documents", exist_ok=True)
 
 # Create email templates
 with open("app/templates/verification.html", "w") as f:
@@ -85,6 +86,8 @@ app.include_router(auth.router, prefix=f"{settings.API_V1_STR}/auth", tags=["aut
 app.include_router(admin.router, prefix=f"{settings.API_V1_STR}/admin", tags=["admin"])
 app.include_router(model.router, prefix=f"{settings.API_V1_STR}/models", tags=["models"])
 app.include_router(contact.router, prefix=f"{settings.API_V1_STR}/contact", tags=["contact"])
+app.include_router(document.router, prefix=f"{settings.API_V1_STR}/documents", tags=["documents"])
+app.include_router(chatbot.router, prefix=f"{settings.API_V1_STR}/chatbot", tags=["chatbot"])
 
 # Background task for cleaning up expired blacklisted tokens
 async def cleanup_expired_tokens():

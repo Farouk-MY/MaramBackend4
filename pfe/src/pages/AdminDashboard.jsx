@@ -8,6 +8,8 @@ import ModelsDashboard from '../components/common/ModelsDashboard';
 import Dashboard from '../components/common/Dashboard';
 import UserDashboard from '../components/common/UserDashboard';
 import ReportsDashboard from '../components/common/ReportsDashboard';
+import DocumentsDashboard from '../components/common/DocumentsDashboard';
+// ChatBot removed from admin as requested
 
 function AdminDashboard() {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
@@ -49,6 +51,9 @@ function AdminDashboard() {
         );
       case 'reports':
         return <ReportsDashboard />;
+      case 'documents':
+        return <DocumentsDashboard />;
+      // ChatBot case removed as requested
       default:
         return <Dashboard />;
     }

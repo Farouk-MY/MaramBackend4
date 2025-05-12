@@ -7,7 +7,9 @@ import {
     faDatabase,
     faCog,
     faSignOutAlt,
-    faEnvelope
+    faEnvelope,
+    faFileAlt,
+    faRobot
 } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
 
@@ -82,6 +84,15 @@ function Sidebar({ collapsed, onNavigate, activeView }) {
                     <FontAwesomeIcon icon={faEnvelope} />
                     {!collapsed && <span className="sidebar-text ms-3">Reports</span>}
                 </div>
+                <div
+                    className={`nav-item d-flex align-items-center p-3 rounded mb-1 ${activeView === 'documents' ? 'active bg-primary bg-opacity-25' : ''}`}
+                    onClick={() => onNavigate('documents')}
+                    style={{ cursor: 'pointer' }}
+                >
+                    <FontAwesomeIcon icon={faFileAlt} />
+                    {!collapsed && <span className="sidebar-text ms-3">Documents</span>}
+                </div>
+                {/* ChatBot option removed as requested */}
                 <div
                     className={`nav-item d-flex align-items-center p-3 rounded mb-1 ${activeView === 'settings' ? 'active bg-primary bg-opacity-25' : ''}`}
                     onClick={() => onNavigate('settings')}

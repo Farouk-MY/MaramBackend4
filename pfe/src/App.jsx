@@ -10,7 +10,9 @@ import TryModel from './pages/TryModel';
 import HowToUse from './pages/HowToUse';
 import ProfileDetails from './pages/ProfileDetails';
 import Contact from './pages/Contact'; // Import the new Contact component
+import ChatBot from './pages/ChatBot'; // Import the ChatBot page
 import BackToTop from './components/common/BackToTop';
+import FloatingChatIcon from './components/common/FloatingChatIcon'; // Import the FloatingChatIcon component
 import Header from './components/common/Header';
 import Footer from './components/common/Footer';
 import AdminDashboard from './pages/AdminDashboard';
@@ -109,6 +111,9 @@ function App() {
 
     setUser(userInfo);
     localStorage.setItem('user', JSON.stringify(userInfo));
+    
+    // Dispatch custom event for auth change
+    window.dispatchEvent(new Event('authChange'));
 
     // Use userData.is_admin directly for the redirection decision
     if (userData.is_admin === true) {
@@ -138,7 +143,11 @@ function App() {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
     setUser(null);
-    navigate('/');
+    
+    // Dispatch custom event for auth change
+    window.dispatchEvent(new Event('authChange'));
+    
+    navigate('/signin');
   };
 
   if (loading) {
@@ -165,6 +174,7 @@ function App() {
         <Route path="/blog/:id" element={<BlogDetails />} />
         <Route path="/try-model/:id" element={<TryModel />} />
         <Route path="/how-to-use" element={<HowToUse />} />
+        <Route path="/chatbot" element={<ChatBot />} />
         <Route 
           path="/profile" 
           element={
@@ -183,7 +193,8 @@ function App() {
         />
       </Routes>
       {!isAdminDashboard && <Footer />}
-      <BackToTop />
+      {/* Replaced BackToTop with FloatingChatIcon as requested */}
+      <FloatingChatIcon />
     </main>
   );
 }

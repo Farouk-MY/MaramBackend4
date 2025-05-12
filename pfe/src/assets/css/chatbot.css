@@ -1,0 +1,91 @@
+/* ChatBot Animations and Styles */
+
+/* Fade In Animation */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Slide In Animation */
+@keyframes slideIn {
+  from { transform: translateY(10px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* Pulse Animation for Loading */
+@keyframes pulseIn {
+  0% { opacity: 1; }
+  50% { opacity: 0.7; }
+  100% { opacity: 1; }
+}
+
+/* Typing Indicator */
+.typing-indicator {
+  display: flex;
+  align-items: center;
+}
+
+.typing-indicator span {
+  height: 8px;
+  width: 8px;
+  margin: 0 2px;
+  background-color: var(--color-primary);
+  border-radius: 50%;
+  display: inline-block;
+  opacity: 0.7;
+}
+
+.typing-indicator span:nth-child(1) {
+  animation: typing 1s infinite 0s;
+}
+
+.typing-indicator span:nth-child(2) {
+  animation: typing 1s infinite 0.2s;
+}
+
+.typing-indicator span:nth-child(3) {
+  animation: typing 1s infinite 0.4s;
+}
+
+@keyframes typing {
+  0% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+}
+
+/* Message Styling Enhancements */
+.chat-messages {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-primary) transparent;
+}
+
+.chat-messages::-webkit-scrollbar {
+  width: 6px;
+}
+
+.chat-messages::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.chat-messages::-webkit-scrollbar-thumb {
+  background-color: var(--color-primary);
+  border-radius: 6px;
+}
+
+/* Improve message bubble appearance */
+.message-content {
+  transition: all 0.2s ease;
+}
+
+.message-content:hover {
+  transform: translateY(-2px);
+}
